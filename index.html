@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Một bức thư đặc biệt dành riêng cho em.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Gửi em...</title>
+
+  <!-- Preconnect to Google Fonts for faster loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon - small heart emoji as SVG data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+</head>
+<body>
+
+  <!-- Floating particles background -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- =============================================
+       LOCKED STATE - Countdown Screen
+       ============================================= -->
+  <section id="locked-screen" aria-label="Đang chờ đến thời điểm mở thư">
+
+    <!-- Wax Seal -->
+    <div class="seal-container">
+      <div class="seal-glow"></div>
+      <div class="wax-seal">
+        <span class="wax-seal-icon" aria-hidden="true">💌</span>
+      </div>
+    </div>
+
+    <h1 class="locked-heading">Bức thư này chưa đến lúc mở</h1>
+    <p class="locked-subtext">Hãy kiên nhẫn chờ đợi nhé...</p>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-container" aria-label="Thời gian còn lại">
+      <div class="countdown-unit">
+        <span class="countdown-value" id="countdown-days">00</span>
+        <span class="countdown-label">Ngày</span>
+      </div>
+      <span class="countdown-separator" aria-hidden="true">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="countdown-hours">00</span>
+        <span class="countdown-label">Giờ</span>
+      </div>
+      <span class="countdown-separator" aria-hidden="true">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="countdown-minutes">00</span>
+        <span class="countdown-label">Phút</span>
+      </div>
+      <span class="countdown-separator" aria-hidden="true">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-value" id="countdown-seconds">00</span>
+        <span class="countdown-label">Giây</span>
+      </div>
+    </div>
+
+    <p class="waiting-message">Có những điều cần đúng thời điểm mới nói...</p>
+
+  </section>
+
+  <!-- =============================================
+       LETTER STATE - Main Content
+       ============================================= -->
+  <main id="letter-screen" aria-label="Nội dung bức thư">
+    <article class="letter-paper">
+      <div class="letter-content">
+
+        
+
+        <!-- Greeting - will be typed out -->
+        <h1 class="letter-greeting" id="greeting-text"></h1>
+
+        <!-- Letter Body - each paragraph fades in sequentially -->
+        <div class="letter-body" id="letter-body">
+          <p>
+            Có một điều t đã suy nghĩ rất lâu trước khi viết ra những dòng này. 
+            Có lẽ vì t luôn trân trọng mối quan hệ mà tụi mình đã có nên t đã 
+            mất rất nhiều thời gian để quyết định có nên nói những điều này hay không.
+          </p>
+          <p>
+            Qua những chuyện không mấy êm đẹp, nên t càng muốn đối xử với m thật 
+            nghiêm túc và thật tử tế. T cũng luôn cảm thấy mình rất may mắn khi 
+            được gặp và quen biết m.
+          </p>
+          <p>
+            Trong cuộc sống có rất nhiều người mình gặp rồi lướt qua, nhưng không 
+            phải ai cũng trở thành một phần quen thuộc trong những ngày bình thường 
+            của mình. Với t, <em>m là một trong số rất ít những người như vậy</em>.
+          </p>
+          <p>
+            Có lẽ vì đã quen với sự hiện diện của m trong cuộc sống từ lúc nào 
+            không hay. Quen với việc có chuyện gì đó muốn kể cho m nghe, quen với 
+            những cuộc trò chuyện, những lần gặp gỡ và cả những điều rất bình 
+            thường giữa tụi mình.
+          </p>
+          <p>
+            Đến mức đôi khi t nhận ra rằng thật khó để tưởng tượng cuộc sống của 
+            mình sẽ ra sao nếu một ngày nào đó những điều ấy không còn nữa. 
+            Không phải vì t muốn giữ m lại bằng bất cứ cách nào, mà đơn giản vì 
+            <em>m đã trở thành một người rất quan trọng đối với t</em>.
+          </p>
+          <p>
+            T muốn được đồng hành với m, xuất hiện nhiều hơn trong cuộc sống của m, 
+            muốn cùng m đi qua những điều vui buồn sau này. T cũng muốn được góp 
+            một phần nhỏ trong hành trình thực hiện ước mơ của m, vì chỉ cần nhìn 
+            thấy m hạnh phúc thôi t cũng đã thấy vui rồi.
+          </p>
+          <p>
+            Có những chuyện m kể, có những điều tưởng như rất nhỏ mà có lẽ chính m 
+            cũng không để ý là t vẫn nhớ. Không phải vì trí nhớ t tốt, mà vì khi 
+            một người trở nên quan trọng với mình, mình sẽ tự nhiên muốn lắng nghe 
+            nhiều hơn một chút, để ý nhiều hơn một chút và thấu hiểu họ nhiều hơn 
+            một chút.
+          </p>
+          <p>
+            T vẫn nhớ những lần m kể cho tụi t nghe những chuyện khiến m buồn, 
+            những lúc mệt mỏi hay áp lực. Có lẽ chính vì được nghe những điều đó 
+            nên t càng hiểu rằng m không phải lúc nào cũng mạnh mẽ như mọi người 
+            vẫn nghĩ. Và thật lòng mà nói, <em>t chưa bao giờ mong m phải luôn 
+            mạnh mẽ cả</em>.
+          </p>
+          <p>
+            T vẫn nhớ có lần m từng nói:
+          </p>
+          <blockquote>
+            &ldquo;Tại sao lúc nào t cũng phải là người hiểu chuyện? T không muốn 
+            hiểu chuyện nữa đâu.&rdquo;
+          </blockquote>
+          <p>
+            Không biết bây giờ m còn nhớ câu nói đó không, nhưng t thì vẫn nhớ.
+          </p>
+          <p>
+            T biết những trải nghiệm trong quá khứ, đặc biệt là trong chuyện tình 
+            cảm, đôi khi sẽ để lại những điều rất khó quên. Vì thế nên t cũng hiểu 
+            phần nào lý do khiến m thận trọng hơn với tình yêu.
+          </p>
+          <p>
+            Nhưng t vẫn luôn mong rằng rồi sẽ có một ngày m có thể nhìn tình yêu 
+            bằng một ánh mắt nhẹ nhàng và bình yên hơn. Một tình yêu không khiến m 
+            phải lo lắng quá nhiều, không khiến m phải cố gắng trở thành một người 
+            khác. Mà là một tình yêu khiến m cảm thấy an toàn, được lắng nghe, được 
+            tôn trọng và được trân trọng đúng với những gì m vốn là.
+          </p>
+          <p>
+            Vì t luôn nghĩ rằng <span class="highlight">m xứng đáng với một tình 
+            yêu như vậy</span>. Và thật lòng mà nói, đó cũng là điều t luôn mong 
+            được dành cho m.
+          </p>
+          <p>
+            Có lẽ chính những lúc m buồn, mệt hay áp lực lại khiến t càng muốn ở 
+            bên cạnh m hơn. Không phải vì t nghĩ m yếu đuối hay cần ai đó giải 
+            quyết mọi chuyện thay mình. Mà đơn giản vì khi quan tâm một người, 
+            mình luôn mong người đó không phải một mình đối diện với những lúc 
+            khó khăn nhất.
+          </p>
+          <p>
+            Nếu có thể, t muốn được lắng nghe, được chia sẻ cùng m nhiều hơn một 
+            chút trên những chặng đường sau này.
+          </p>
+          <p>
+            Có lẽ t cũng có một chút ích kỷ. Vì khi nghĩ đến tương lai, đôi khi 
+            t vẫn mong người có thể ở bên cạnh m, lắng nghe m và trân trọng những 
+            điều rất riêng ở m — <em>sẽ là t</em>.
+          </p>
+          <p>
+            Có lẽ bởi vì t đã được chứng kiến những lúc m vui, những lúc m buồn, 
+            những lúc mạnh mẽ và cả những lúc yếu lòng. Nên t luôn mong người đồng 
+            hành cùng m sau này sẽ là người thật sự hiểu và trân trọng con người 
+            của m. Và nếu được lựa chọn, <em>t vẫn luôn hy vọng người đó có thể 
+            là t</em>.
+          </p>
+          <p>
+            Nếu sau này có những lúc t không ở gần nữa, t chỉ mong m đừng giữ mọi 
+            chuyện trong lòng một mình. T biết m là người hay cố gắng chịu đựng và 
+            tự giải quyết mọi thứ. Nhưng đôi khi, m cũng xứng đáng được người khác 
+            lắng nghe và chia sẻ cùng.
+          </p>
+          <p>
+            Nếu có chuyện gì đó mà m ngại nói với t, hoặc đơn giản là lúc đó t 
+            không ở bên cạnh được, thì hãy tìm đến những người thật lòng quan tâm m. 
+            Quang Anh cũng là một người như vậy. T nghĩ cả t và Quang Anh đều có 
+            chung một mong muốn, đó là được thấy m vui vẻ, bình an và hạnh phúc.
+          </p>
+          <p>
+            Có lẽ đến đây thì m cũng đã hiểu điều t muốn nói rồi.
+          </p>
+          <p class="confession">
+            T thích m.
+          </p>
+          <p>
+            Không phải vì một khoảnh khắc nào đó. Mà là từ rất nhiều điều nhỏ bé 
+            được tích góp qua thời gian.
+          </p>
+          <p>
+            T thích cách m xuất hiện trong cuộc sống của t. T thích những cuộc trò 
+            chuyện giữa tụi mình. T thích sự tử tế của m, cách m quan tâm đến những 
+            người xung quanh, và cả những điều rất riêng ở m mà có lẽ chỉ những 
+            người ở gần mới có cơ hội nhìn thấy. T thích cả những lúc m vô tư, 
+            những lúc m mạnh mẽ, và cả những lúc m cho phép người khác nhìn thấy 
+            một phiên bản rất thật của mình.
+          </p>
+          <p>
+            Nếu hiện tại m chưa thể đáp lại tình cảm của t thì t cũng không trách 
+            m đâu. T cũng không viết những dòng này để khiến m phải đưa ra câu trả 
+            lời ngay lập tức. T chỉ muốn một lần được thành thật với những cảm xúc 
+            mà t đã giữ trong lòng suốt một khoảng thời gian dài.
+          </p>
+          <p>
+            Dù sau này tụi mình trở thành điều gì trong cuộc sống của nhau, t vẫn 
+            luôn biết ơn vì đã có cơ hội gặp được m. Cảm ơn m vì đã xuất hiện 
+            trong cuộc đời t. Cảm ơn vì những cuộc trò chuyện, những lần đồng hành, 
+            những niềm vui và cả những khoảng thời gian bình thường mà có lẽ sau 
+            này t vẫn sẽ luôn nhớ.
+          </p>
+          <p>
+            Và dù tương lai có ra sao đi nữa, t vẫn luôn mong những điều tốt đẹp 
+            nhất sẽ đến với m. Còn nếu một ngày nào đó t may mắn có cơ hội được 
+            đồng hành cùng m trong một tư cách khác, thì đó sẽ là điều khiến t 
+            hạnh phúc và trân trọng vô cùng.
+          </p>
+        </div>
+
+        <!-- Signature -->
+        <div class="letter-signature" id="letter-signature">
+          — Hưng
+        </div>
+
+        <!-- PS Note -->
+        
+
+      </div>
+    </article>
+  </main>
+
+  <!-- Music Toggle Button -->
+  <button class="music-toggle" id="music-toggle" aria-label="Bật/tắt nhạc nền" title="Bật/tắt nhạc nền">
+    <div class="music-bars">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </button>
+
+  <!-- 
+    Background Music: Replace the src below with your own audio file.
+    Gợi ý: Một bản piano nhẹ nhàng hoặc acoustic.
+    Bạn có thể dùng file local (ví dụ: "music.mp3") hoặc URL.
+  -->
+  <audio id="bg-music" loop preload="none">
+    <!-- <source src="music.mp3" type="audio/mpeg"> -->
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

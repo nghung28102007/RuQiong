@@ -1,0 +1,682 @@
+/* ============================================
+   RuQiong - Digital Love Letter
+   Design System & Styles
+   ============================================ */
+
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* --- Design Tokens --- */
+:root {
+  /* Color Palette - Warm Pastel Neutrals */
+  --color-bg:          #FBF6EF;
+  --color-bg-warm:     #F5EDE0;
+  --color-paper:       #FFFDF9;
+  --color-paper-edge:  #F0E6D6;
+  --color-text:        #3D2C2C;
+  --color-text-light:  #6B5B5B;
+  --color-text-muted:  #9A8A8A;
+  --color-accent:      #C9A9A6;
+  --color-accent-warm: #D4B896;
+  --color-accent-rose: #E8C4C0;
+  --color-seal:        #B85C5C;
+  --color-seal-dark:   #8B3A3A;
+  --color-gold:        #C4A265;
+  --color-gold-light:  #E8D5B0;
+
+  /* Typography */
+  --font-heading:    'Cormorant Garamond', 'Georgia', serif;
+  --font-body:       'Lora', 'Georgia', serif;
+  --font-signature:  'Dancing Script', cursive;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Transitions */
+  --ease-gentle:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-elegant: cubic-bezier(0.19, 1, 0.22, 1);
+  --duration-fast:   0.3s;
+  --duration-normal: 0.6s;
+  --duration-slow:   1.2s;
+
+  /* Shadows */
+  --shadow-paper: 
+    0 1px 3px rgba(61, 44, 44, 0.04),
+    0 4px 12px rgba(61, 44, 44, 0.06),
+    0 12px 36px rgba(61, 44, 44, 0.08);
+  --shadow-paper-hover: 
+    0 2px 6px rgba(61, 44, 44, 0.06),
+    0 8px 24px rgba(61, 44, 44, 0.08),
+    0 20px 48px rgba(61, 44, 44, 0.10);
+  --shadow-seal: 
+    0 2px 8px rgba(139, 58, 58, 0.3),
+    0 4px 16px rgba(139, 58, 58, 0.15);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* --- Background Texture --- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(200, 169, 166, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(212, 184, 150, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(232, 196, 192, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Floating Particles Canvas --- */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* ============================================
+   LOCKED STATE - Countdown Screen
+   ============================================ */
+#locked-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 1.5s var(--ease-elegant), 
+              transform 1.5s var(--ease-elegant);
+}
+
+#locked-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+
+/* Envelope Icon / Seal */
+.seal-container {
+  position: relative;
+  margin-bottom: var(--space-2xl);
+}
+
+.wax-seal {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--color-seal), var(--color-seal-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-seal);
+  position: relative;
+  animation: sealBreathe 4s var(--ease-gentle) infinite;
+}
+
+.wax-seal::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+}
+
+.wax-seal-icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+@keyframes sealBreathe {
+  0%, 100% { transform: scale(1); box-shadow: var(--shadow-seal); }
+  50% { transform: scale(1.05); box-shadow: 0 4px 16px rgba(139, 58, 58, 0.35), 0 8px 32px rgba(139, 58, 58, 0.2); }
+}
+
+/* Glow ring around seal */
+.seal-glow {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 169, 166, 0.3);
+  animation: glowPulse 4s var(--ease-gentle) infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+
+/* Locked Text */
+.locked-heading {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-text);
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.locked-subtext {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2xl);
+  text-align: center;
+}
+
+/* Countdown Timer */
+.countdown-container {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+}
+
+.countdown-value {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--color-text);
+  line-height: 1.1;
+  transition: transform 0.3s var(--ease-gentle);
+}
+
+.countdown-value.tick {
+  transform: scale(1.1);
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: var(--space-xs);
+}
+
+.countdown-separator {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  align-self: flex-start;
+  padding-top: 0.3rem;
+  animation: separatorPulse 2s ease-in-out infinite;
+}
+
+@keyframes separatorPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Waiting message */
+.waiting-message {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  opacity: 0.7;
+}
+
+/* ============================================
+   LETTER STATE - Main Content
+   ============================================ */
+#letter-screen {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-3xl) var(--space-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-elegant);
+}
+
+#letter-screen.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Letter Paper */
+.letter-paper {
+  width: 100%;
+  max-width: 640px;
+  background: var(--color-paper);
+  border-radius: 2px;
+  padding: var(--space-3xl) var(--space-2xl);
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  border: 1px solid var(--color-paper-edge);
+}
+
+/* Paper decorative left border */
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-accent-rose) 15%,
+    var(--color-accent-rose) 85%,
+    transparent
+  );
+  opacity: 0.35;
+}
+
+/* Subtle ruled lines */
+.letter-paper::after {
+  content: '';
+  position: absolute;
+  left: 36px;
+  right: 20px;
+  top: 60px;
+  bottom: 60px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    rgba(200, 169, 166, 0.12) 31px,
+    rgba(200, 169, 166, 0.12) 32px
+  );
+  pointer-events: none;
+}
+
+/* Letter content container - above pseudo-elements */
+.letter-content {
+  position: relative;
+  z-index: 1;
+  padding-left: 20px;
+}
+
+/* Date header */
+.letter-date {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: right;
+  margin-bottom: var(--space-2xl);
+  letter-spacing: 0.02em;
+}
+
+/* Greeting - typed effect target */
+.letter-greeting {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: var(--space-xl);
+  min-height: 2.5rem;
+}
+
+.letter-greeting .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.5rem;
+  background-color: var(--color-text);
+  margin-left: 2px;
+  animation: cursorBlink 1s steps(1) infinite;
+  vertical-align: middle;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Letter paragraphs */
+.letter-body p {
+  font-size: 1rem;
+  line-height: 1.95;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+}
+
+.letter-body p.visible {
+  opacity: 1;
+}
+
+/* Highlight / emphasis within letter */
+.letter-body em {
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.letter-body .highlight {
+  color: var(--color-seal);
+  font-weight: 500;
+}
+
+/* Blockquote - remembered quote */
+.letter-body blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  border-left: 2px solid var(--color-accent-rose);
+  padding: var(--space-sm) var(--space-lg);
+  margin: var(--space-md) 0 var(--space-lg) 0;
+  opacity: 0;
+}
+
+.letter-body blockquote.visible {
+  opacity: 1;
+}
+
+/* Confession - the pivotal moment */
+.letter-body .confession {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--color-seal);
+  text-align: center;
+  margin: var(--space-xl) 0;
+  padding: var(--space-md) 0;
+  letter-spacing: 0.03em;
+}
+
+/* Signature */
+.letter-signature {
+  font-family: var(--font-signature);
+  font-size: 1.6rem;
+  color: var(--color-text);
+  margin-top: var(--space-2xl);
+  text-align: right;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1s var(--ease-gentle) 0.3s, 
+              transform 1s var(--ease-gentle) 0.3s;
+}
+
+.letter-signature.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* PS note */
+.letter-ps {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-paper-edge);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s var(--ease-gentle) 0.5s, 
+              transform 0.8s var(--ease-gentle) 0.5s;
+}
+
+.letter-ps.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Music Toggle Button
+   ============================================ */
+.music-toggle {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-paper-edge);
+  background: var(--color-paper);
+  box-shadow: 0 2px 8px rgba(61, 44, 44, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  z-index: 100;
+  transition: all var(--duration-fast) var(--ease-gentle);
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.music-toggle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.music-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  box-shadow: var(--shadow-paper);
+}
+
+.music-toggle.playing .music-bars {
+  animation: none;
+}
+
+/* Music bars animation */
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+}
+
+.music-bars span {
+  width: 2.5px;
+  background-color: var(--color-text-muted);
+  border-radius: 1px;
+  transition: background-color var(--duration-fast);
+}
+
+.music-toggle:hover .music-bars span {
+  background-color: var(--color-text);
+}
+
+.music-toggle.playing .music-bars span:nth-child(1) {
+  animation: musicBar 0.8s ease-in-out infinite alternate;
+  animation-delay: 0s;
+}
+.music-toggle.playing .music-bars span:nth-child(2) {
+  animation: musicBar 0.8s ease-in-out infinite alternate;
+  animation-delay: 0.2s;
+}
+.music-toggle.playing .music-bars span:nth-child(3) {
+  animation: musicBar 0.8s ease-in-out infinite alternate;
+  animation-delay: 0.4s;
+}
+.music-toggle.playing .music-bars span:nth-child(4) {
+  animation: musicBar 0.8s ease-in-out infinite alternate;
+  animation-delay: 0.1s;
+}
+
+/* Non-playing state - bars at rest */
+.music-bars span:nth-child(1) { height: 4px; }
+.music-bars span:nth-child(2) { height: 7px; }
+.music-bars span:nth-child(3) { height: 5px; }
+.music-bars span:nth-child(4) { height: 3px; }
+
+@keyframes musicBar {
+  0%   { height: 4px; }
+  100% { height: 14px; }
+}
+
+/* ============================================
+   Responsive Design - Mobile First
+   ============================================ */
+
+/* Small phones */
+@media (max-width: 380px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .countdown-container {
+    gap: var(--space-md);
+  }
+
+  .countdown-value {
+    font-size: 2rem;
+  }
+
+  .countdown-unit {
+    min-width: 55px;
+  }
+
+  .letter-paper {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .letter-paper::before {
+    left: 16px;
+  }
+
+  .letter-paper::after {
+    left: 22px;
+    right: 12px;
+    top: 40px;
+    bottom: 40px;
+  }
+
+  .letter-content {
+    padding-left: 12px;
+  }
+
+  .letter-greeting {
+    font-size: 1.4rem;
+  }
+}
+
+/* Standard phones */
+@media (max-width: 600px) {
+  #letter-screen {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .letter-paper {
+    padding: var(--space-xl) var(--space-lg);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .locked-heading {
+    font-size: 1.35rem;
+  }
+
+  .countdown-value {
+    font-size: 2.2rem;
+  }
+
+  .countdown-separator {
+    font-size: 1.8rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .letter-paper {
+    padding: var(--space-3xl);
+    max-width: 580px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .letter-paper {
+    padding: var(--space-3xl) 3.5rem;
+  }
+}
+
+/* --- Accessibility: Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Print Styles --- */
+@media print {
+  body {
+    background: white;
+  }
+
+  #locked-screen,
+  #particles-canvas,
+  .music-toggle {
+    display: none !important;
+  }
+
+  #letter-screen {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .letter-paper {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .letter-body p {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
